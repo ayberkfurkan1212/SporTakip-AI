@@ -10,9 +10,7 @@ WhatsApp üzerinden doğal dille çalışan, yapay zekâ destekli kişisel besle
 ![WhatsApp](https://img.shields.io/badge/WhatsApp_Cloud_API-25D366?style=flat-square&logo=whatsapp&logoColor=white)
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
 
-## Ekran görüntüleri
 
-<!-- WhatsApp sohbetinden 2-3 ekran görüntüsü ekleyin (telefon numaraları gizlenmiş olarak) -->
 
 ## Mimari
 
