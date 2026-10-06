@@ -1,4 +1,4 @@
-# SporTakip AI 🏋️
+   #### 🏋️ [SporTakip AI](https://github.com/ayberkfurkan1212/SporTakip-AI)
 
 WhatsApp üzerinden doğal dille çalışan, yapay zekâ destekli kişisel beslenme ve antrenman asistanı. Kullanıcı yazarak, sesli mesajla ya da yemeğinin fotoğrafını göndererek öğün, su, antrenman, kilo, vücut ölçüsü ve takviye kaydı tutar; ayrı bir uygulama indirmesine gerek yoktur.
 
