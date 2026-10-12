@@ -58,7 +58,7 @@ GitHub Actions ── main dalına gelen değişikliklerde edge function'ları o
 - Kalan hedefe göre **"ne yesem?"** önerileri
 
 **Antrenman**
-- 6 hazır program (tüm vücut, evde dambıl, GZCLP, Push-Pull-Legs 3/6 gün, Üst/Alt); 3 soruyla kişiye uygun program önerisi
+- 7 hazır program: tüm vücut, evde dambıl, GZCLP, Push-Pull-Legs 3/6 gün, Üst/Alt ve 8 haftalık **Koşuya Başla (0 → 5 km)**; 3 soruyla kişiye uygun program önerisi
 - **İlerleme motoru:** lineer ve çift ilerleme; 3 başarısızlıkta otomatik deload; her hareket için bir sonraki hedef ağırlık/tekrar
 - Tahmini 1RM, kişisel rekorlar ve haftalık güç raporu
 - **Kardiyo:** yürüyüş, koşu, bant, bisiklet, yüzme, eliptik, kürek, HIIT, futbol ve daha fazlası; kalori **Compendium of Physical Activities** MET değerleri ve **ACSM** metabolik denklemleriyle (hız + eğim) hesaplanır; mesafe/tempo rekorları, haftalık 150 dk hedefi
