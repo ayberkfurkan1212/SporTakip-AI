@@ -19,6 +19,10 @@ Kullanıcı uygulama indirmez, form doldurmaz: WhatsApp'a **"2 yumurta 1 dilim e
 
 > ℹ️ Bu depodaki kod, projenin **Ekim 2026 başındaki** anlık görüntüsüdür. Ürün aktif olarak geliştiriliyor; güncel kaynak kod özel bir depoda tutuluyor. Aşağıdaki açıklamalar ürünün güncel halini anlatır.
 
+## Son güncellemeler
+
+- **Kasım 2026:** "Her zamanki kahvaltım" gibi tek mesajla alışkanlık öğünü kaydı; `geri al` komutu; WhatsApp Flows ile uygulama içi kayıt formu; hedefleri bozmayan "hafif gün"; paylaşılabilir ilerleme kartı; besin değerlerinde kaynak etiketi ve fotoğraf analizinde saat bağlamı; elle girilen hedefin korunması ve "hedeflerimi yeniden hesapla"; tanıtım sitesinde 37 sayfalık Türk yemekleri kalori rehberi; kapsamlı güvenlik denetimi ve düzeltmeleri (ödeme eşleştirme, atomik sayaçlar, acil durdurma anahtarı, kendi sunucusundan yazı tipleri ve çerçeve koruması)
+
 ---
 
 ## Tasarım ilkesi: "AI dili anlar, kod hesaplar"
@@ -55,11 +59,12 @@ GitHub Actions     ── main dalına gelen değişiklikte etkilenen edge funct
 ## Özellikler
 
 **Beslenme**
-- Serbest Türkçe metinle öğün ve içecek kaydı; belirsiz öğünde soru sorma ("hangi peynir?"), kayıtlı öğünler, kişisel porsiyonlar ("1 kase pilav 250 gram"), düzenleme ve silme
+- Serbest Türkçe metinle öğün ve içecek kaydı; belirsiz öğünde soru sorma ("hangi peynir?"), kayıtlı öğünler, "her zamanki kahvaltım" ile alışkanlık öğünü, kişisel porsiyonlar ("1 kase pilav 250 gram"), düzenleme, silme ve yeni kaydı kısa süre içinde `geri al`
 - **2.800+ kayıtlık besin veritabanı:** Türk mutfağı, USDA FoodData Central ham malzemeleri, 1.650+ barkodlu paketli ürün ve **650 zincir restoran ürünü** (McDonald's, Burger King, Popeyes, Starbucks, Tavuk Dünyası); "dilim", "kase", "kepçe" gibi porsiyonlar `food_portions` ile grama çevrilir
 - **Kelime + anlam araması:** `pg_trgm` yazım hatalarını, `pgvector` (text-embedding-3-small) anlam benzerliğini yakalar ("ezo gelin" → Ezogelin çorbası); kalori her zaman veritabanından gelir, model yalnız adaylardan seçer
 - **Otomatik besin doğrulama:** internetten araştırılan her besin Open Food Facts ve bağımsız ikinci bir araştırmayla karşılaştırılır; tutarsa kendiliğinden onaylanır, tutmazsa yöneticiye WhatsApp'ta iki seçenekle sorulur
 - **Fotoğraftan tanıma:** tabak fotoğrafı → öğün; **barkod** → ürün; **paket üstündeki besin değerleri tablosu** → okunup kaydedilir
+- Kayıtlarda besin değerinin kaynağını gösteren etiket; fotoğraf analizinde öğünün saati bağlam olarak kullanılır
 - "Kaç kalori?" sorusunu kaydetmeden cevaplama, kalan hedefe göre **"ne yesem?"** önerileri
 
 **Antrenman ve hareket**
@@ -70,6 +75,7 @@ GitHub Actions     ── main dalına gelen değişiklikte etkilenen edge funct
 
 **Takip ve raporlar**
 - Su, kilo, vücut ölçüsü (ABD Donanması formülüyle yağ oranı) ve takviye kaydı; günlük özet, haftalık rapor
+- Hedefleri değiştirmeyen "hafif gün" seçeneği; paylaşılabilir ilerleme kartı (kilo değişimi isteğe bağlı)
 - Apple Sağlık'tan adım ve kilo aktarımı, 24 saatlik özel bağlantıyla web paneli
 - Zayıflama iğnesi (GLP-1) takibi ve iğne günü hatırlatması
 
@@ -80,10 +86,10 @@ GitHub Actions     ── main dalına gelen değişiklikte etkilenen edge funct
 
 **Güvenlik ve sağlık**
 - Kayıttan sonra sağlık soruları (hamilelik, emzirme, yeme bozukluğu geçmişi, şeker ilacı); riskli durumda kalori açığı ve uzun oruç kapalı
-- Elle girilen kalori hedefi için alt sınırlar; tek kalemde aşırı kaloride kaydetmeden onay
+- Elle girilen kalori hedefi için alt sınırlar; elle hedef otomatik hesaplamalarda korunur, istenirse "hedeflerimi yeniden hesapla"; tek kalemde aşırı kaloride kaydetmeden onay
 
 **Ürün ve işletim**
-- Onboarding: Mifflin-St Jeor ile TDEE; tek mesajda takviye, antrenman ve kardiyo bilgisi
+- Onboarding: WhatsApp Flows ile uygulama içi kayıt formu (form açılamazsa düz metne düşer), Mifflin-St Jeor ile TDEE; tek mesajda takviye, antrenman ve kardiyo bilgisi
 - Free / Premium planlar, günlük limitler, 7 günlük deneme, ödeme bildiriminden otomatik Premium açma (HMAC imza doğrulaması)
 - **Maliyet takibi:** her OpenAI çağrısı token ve dolar karşılığıyla kaydedilir; kullanıcı/gün bazında maliyet ve günlük e-posta raporu
 - **Testler:** anlama 71/71, kalori 46/46 regresyon testi ve gerçek fonksiyona mesaj gönderen uçtan uca test koşucusu
@@ -96,6 +102,8 @@ GitHub Actions     ── main dalına gelen değişiklikte etkilenen edge funct
 - Değer aralıkları CHECK kısıtlarıyla veritabanı seviyesinde korunur
 - `SECURITY DEFINER` fonksiyonlarının çalıştırma yetkisi istemci rollerinden kaldırılmıştır
 - Meta webhook imzası (HMAC-SHA256) doğrulanır; WhatsApp mesaj kimliği üzerinden tekilleştirme; dahili fonksiyonlar yalnızca yetkili anahtarla çağrılabilir
+- Kasım 2026 güvenlik denetimi ve düzeltmeleri: ödeme bildirimi eşleştirmesi, atomik sayaçlar, besin kataloğu bütünlüğü, acil durdurma anahtarı ve CI kontrolleri sıkılaştırıldı
+- Tanıtım sitesinde yazı tipleri kendi sunucusundan sunulur (üçüncü taraf font isteği yok); panel sayfaları başka sitelerde çerçeve içine alınamaz
 
 Bu depodaki şema: [`supabase/schema.sql`](supabase/schema.sql)
 
